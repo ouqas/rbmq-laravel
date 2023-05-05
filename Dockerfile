@@ -1,4 +1,4 @@
-FROM php:8.0-fpm as php
+FROM php:8.2-fpm as php
 
 ENV PHP_OPCACHE_ENABLE=1
 ENV PHP_OPCACHE_ENABLE_CLI=0
@@ -22,7 +22,7 @@ COPY ./docker-compose/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./docker-compose/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY ./docker-compose/nginx/nginx-dev.conf /etc/nginx/nginx.conf
 
-COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.5.5 /usr/bin/composer /usr/bin/composer
 
 
 

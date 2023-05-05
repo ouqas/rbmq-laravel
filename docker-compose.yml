@@ -2,27 +2,27 @@ version: "3.7"
 services:
 
     # PHP Service
-  php:
-        container_name: php
+  nginx-fpm:
+        container_name: nginx-fpm_container
         # for macs m1 and above
         platform: linux/x86_64
         build:
             context: .
-            target: php
+            # target: nginx-fpm
             args:
                 - APP_ENV=${APP_ENV}
         command: ["docker-compose/entrydev.sh"]
       
         environment:
             - APP_ENV=${APP_ENV}
-            - CONTAINER_ROLE=app
+           
         working_dir: /var/www
         volumes:
             - ./:/var/www
         ports:
             - 8000:8000
         depends_on:
-            - db
+            - database_container
         networks:
           - loc
         healthcheck:
@@ -32,14 +32,15 @@ services:
           start_period: 10s
           timeout: 10s
 
-  db:
+  database_container:
     image: mysql:debian
     platform: linux/x86_64
-    container_name: db
+    container_name: database_container
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: rbmq-laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: false
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       # SERVICE_TAGS: dev

@@ -4,4 +4,4 @@
 TODO 
 - Explation for setup 
 - add make file 
--
+- install supervisord to manage queue workers 
