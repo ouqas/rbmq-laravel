@@ -8,9 +8,17 @@ override p= dddddd
 
 
 
-setup:
+setup: up run 
+
+up:
 	docker-compose up -d 
+
+run:
 	docker-compose exec nginx-fpm npm run dev 
+
+
+rebuild:
+	docker-compose up -d --build
 	
 down:
 	docker-compose down 
