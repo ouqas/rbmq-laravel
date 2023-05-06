@@ -18,6 +18,11 @@ php artisan cache:clear
 php artisan migrate
 
 
+npm install
+
+
+
+
 
 sh docker-compose/config.sh
 # php-fpm -D

@@ -21,16 +21,18 @@ services:
             - ./:/var/www
         ports:
             - 8000:8000
+            - 8001:8001
+            - 5173:5173
         depends_on:
             - database_container
         networks:
           - loc
-        healthcheck:
-          test: curl --fail http://localhost:8000 || exit 1
-          interval: 2s
-          retries: 10
-          start_period: 10s
-          timeout: 10s
+        # healthcheck:
+        #   test: curl --fail http://localhost:8000 || exit 1
+        #   interval: 2s
+        #   retries: 10
+        #   start_period: 10s
+        #   timeout: 10s
 
   database_container:
     image: mysql:debian
@@ -72,7 +74,7 @@ services:
        RABBITMQ_DEFAULT_USER: ${RB_USER}
        RABBITMQ_DEFAULT_PASS: ${RB_PSSWRD}
       volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/c/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
   

@@ -11,6 +11,10 @@ RUN usermod -u 1000 www-data
 RUN apt-get update -y
 RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx
 RUN docker-php-ext-install pdo mysqli pdo_mysql bcmath curl opcache
+
+#install node npm install
+RUN curl -s https://deb.nodesource.com/setup_18.x |  bash
+RUN apt-get install nodejs -y
 # RUN docker-php-ext-enable opcache
 
 WORKDIR /var/www
