@@ -18,7 +18,10 @@ php artisan cache:clear
 php artisan migrate
 
 
-npm install
+
+if [ -d "node_modules" ]; then  
+    npm install
+fi
 
 
 
